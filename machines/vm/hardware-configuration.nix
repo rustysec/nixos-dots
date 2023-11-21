@@ -12,13 +12,24 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+  boot.plymouth = {
+    enable = true;
+    theme = "breeze";
+  };
+  boot.kernelParams = [ "quiet" ];
+  boot.initrd.systemd.enable = true;
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/2a08e69a-2e89-4e23-b1cf-6d53246f72cf";
+    { device = "/dev/disk/by-uuid/9afdb0f2-3237-4a35-9111-5f4c2d05d08b";
       fsType = "ext4";
     };
 
-  boot.initrd.luks.devices."luks-8ca3866e-e696-42ff-bd7d-a974265f6fc6".device = "/dev/disk/by-uuid/8ca3866e-e696-42ff-bd7d-a974265f6fc6";
+  boot.initrd.luks.devices."luks-51146d93-7f0a-481c-80e3-5d33478b1b58".device = "/dev/disk/by-uuid/51146d93-7f0a-481c-80e3-5d33478b1b58";
+
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/18C2-F529";
+      fsType = "vfat";
+    };
 
   swapDevices = [ ];
 
