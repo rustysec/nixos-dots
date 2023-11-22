@@ -73,10 +73,14 @@ Defaults pwfeedback
     blueman
     file
     git
+    glib
+    gnome.adwaita-icon-theme
+    gnome.gnome-themes-extra
     greetd.wlgreet
     mate.mate-polkit
     neovim
     networkmanagerapplet
+    pavucontrol
     psmisc
     tmux
     wget

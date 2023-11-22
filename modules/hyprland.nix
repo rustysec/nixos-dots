@@ -12,6 +12,11 @@ in {
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
 
+    bindm = [
+      "SUPER,       mouse:272,    movewindow"
+      "SUPER,       mouse:273,    resizewindow"
+    ];
+
     bind = [
       "$mod,        a,      exec, foot"
       "$mod,        RETURN, exec, foot -e tmux new"
@@ -108,10 +113,18 @@ in {
       "nm-applet --indicator"
       "swaybg -m fill --image ${wallpaper}"
       "swayidle -w timeout 300 'bash ~/.config/locker/locker.sh' timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' before-sleep 'bash ~/.config/locker/locker.sh'"
+
+      "hyprctl setcursor Adwaita 24"
+      "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
+      "gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'"
+      "gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'"
+      "gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'"
     ];
   };
 
   wayland.windowManager.hyprland.extraConfig = ''
+env = GTK_THEME,Adwaita-dark
+
 general {
     col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
     col.inactive_border = rgba(595959aa)
