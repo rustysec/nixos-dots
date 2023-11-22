@@ -25,6 +25,8 @@ in {
     programs.nixvim = {
         enable = true;
 
+        clipboard.register = "unnamedplus";
+
         globals = {
             mapleader = " ";
         };
@@ -62,6 +64,9 @@ in {
               };
             };
 
+            crates-nvim.enable = true;
+            illuminate.enable = true;
+            indent-blankline.enable = true;
             luasnip.enable = true;
             cmp-nvim-lsp.enable = true;
             gitsigns.enable = true;
@@ -71,6 +76,7 @@ in {
                 enable = true;
                 ensureInstalled = [
                     "bash"
+                    "cpp"
                     "go"
                     "nix"
                     "javascript"
@@ -116,10 +122,14 @@ in {
             { mode = "n"; key = "<leader>ff"; action = ":Telescope find_files<cr>"; }
             { mode = "n"; key = "<leader>fg"; action = "<cmd>Telescope live_grep<cr>"; }
             { mode = "n"; key = "<leader>fr"; action = ":Telescope lsp_references<cr>"; }
-            { mode = "n"; key = "<leader>fs"; action = ":Telescope find_string<cr>"; }
+            { mode = "n"; key = "<leader>fs"; action = ":Telescope lsp_document_symbols<cr>"; }
+            { mode = "n"; key = "<leader>fS"; action = ":Telescope lsp_dynamic_workspace_symbols<cr>"; }
+            { mode = "n"; key = "<leader>fw"; action = ":Telescope grep_string<cr>"; }
+
             { mode = "n"; key = "<leader>ca"; action = ":lua vim.lsp.buf.actions()<cr>"; }
             { mode = "n"; key = "<leader>cd"; action = ":lua vim.diagnostic.open_float()<cr>"; }
             { mode = "n"; key = "<leader>cr"; action = ":lua vim.lsp.buf.rename()<cr>"; }
+
             { mode = "n"; key = "<C-h>"; action = ":wincmd h<cr>"; }
             { mode = "n"; key = "<C-j>"; action = ":wincmd j<cr>"; }
             { mode = "n"; key = "<C-k>"; action = ":wincmd k<cr>"; }
@@ -155,6 +165,8 @@ in {
         ];
 
         extraConfigLua = ''
+vim.opt.list = true
+
 require("focus").setup({})
 
 local cmp = require("cmp")
@@ -188,11 +200,18 @@ lspconfig.rust_analyzer.setup({
     settings = {
         ["rust-analyzer"] = {
             cargo = {
-                target = os.getenv("LSP_CARGO_TARGET") or nil,
+              target = os.getenv("LSP_CARGO_TARGET") or nil,
+            },
+            checkOnSave = {
+              allFeatures = true,
+              command = "clippy",
+              target = os.getenv("LSP_CARGO_TARGET") or nil,
             },
         },
     },
 })
+
+lspconfig.clangd.setup({})
 
 require("lsp-inlayhints").setup({})
 vim.api.nvim_create_augroup("LspAttach_inlayhints", {})

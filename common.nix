@@ -28,6 +28,10 @@ in
       enable = true;
     };
 
+    tlp = {
+      enable = true;
+    };
+
     greetd = {
       enable = true;
       settings = {
@@ -148,6 +152,10 @@ Defaults pwfeedback
       userEmail = "russ@infocyte.com";
     };
 
+    home.sessionPath = [
+      "$HOME/.cargo/bin"
+    ];
+
     home.file.".ssh/config".text = ''
 AddKeysToAgent yes
 '';
@@ -167,6 +175,7 @@ AddKeysToAgent yes
       go
       gopls
       grim
+      libclang
       pamixer
       playerctl
       ripgrep
