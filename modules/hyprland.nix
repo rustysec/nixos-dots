@@ -67,7 +67,7 @@ in {
       ",XF86AudioPrev,          exec,playerctl previous"
       ",Print,                  exec,grim -g \"$(slurp)\" - | wl-copy"
     ];
-    
+
     misc = {
       disable_hyprland_logo = true;
       disable_splash_rendering = true;
@@ -97,7 +97,6 @@ in {
 
     gestures = {
       workspace_swipe = true;
-      workspace_swipe_numbered = true;
     };
 
     "device:at-translated-set-2-keyboard" = {
