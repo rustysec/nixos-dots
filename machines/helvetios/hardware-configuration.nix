@@ -12,18 +12,8 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-  boot.plymouth = {
-    enable = true;
-    theme = "breeze";
-  };
-  boot.kernelParams = [ "quiet" ];
-  boot.initrd.systemd.enable = true;
   boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.consoleMode = "auto";
   boot.loader.efi.canTouchEfiVariables = true;
-
-  console.earlySetup = true;
-  # config.hardware.video.hidpi.enable = true;
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/089555d5-20f5-471d-ab40-038d1447a281";
