@@ -5,10 +5,10 @@
   ...
 }:
 let
-	wallpaper = pkgs.fetchurl {
-		url = "https://raw.githubusercontent.com/nixos/nixos-artwork/master/wallpapers/nix-wallpaper-stripes-logo.png";
-		sha256 = "d4ca0fc32b70f24062cbe4b1ef4c661e7c4c260a8468e47d60481030ee9b1233";
-	};
+  wallpaper = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/nixos/nixos-artwork/master/wallpapers/nix-wallpaper-stripes-logo.png";
+    sha256 = "d4ca0fc32b70f24062cbe4b1ef4c661e7c4c260a8468e47d60481030ee9b1233";
+  };
 in
 {
 
@@ -39,12 +39,13 @@ in
       alsa.support32Bit = true;
       pulse.enable = true;
       wireplumber.enable = true;
-      # If you want to use JACK applications, uncomment this
-      #jack.enable = true;
     };
+
+    blueman.enable = true;
   };
 
   security = {
+    polkit.enable = true;
     rtkit.enable = true;
     pam.services.swaylock = {};
     sudo.configFile = ''
@@ -63,26 +64,38 @@ Defaults pwfeedback
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    blueman
+    file
     git
     greetd.wlgreet
+    mate.mate-polkit
     neovim
+    networkmanagerapplet
+    psmisc
     tmux
     wget
+    xdg-desktop-portal-hyprland
   ];
 
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+  programs = {
+    hyprland = {
+      enable = true;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    };
+
+    zsh.enable = true;
+    virt-manager.enable = true;
+    dconf.enable = true;
+    thunar.enable = true;
+    ssh.startAgent = true;
   };
 
-  programs.zsh.enable = true;
-  programs.virt-manager.enable = true;
-  programs.dconf.enable = true;
-
-  virtualisation.libvirtd.enable = true;
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
+  virtualisation = {
+    libvirtd.enable = true;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+    };
   };
 
   fonts.packages = with pkgs; [
@@ -91,17 +104,41 @@ Defaults pwfeedback
     nerdfonts
   ];
 
+  systemd = {
+    user.services.polkit-mate-authentication-agent-1 = {
+      after = [ "graphical-session.target" ];
+      description = "polkit-mate-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
+  };
+
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   home-manager.users.russ = { pkgs, ... }: 
   {
     home.stateVersion = "23.05";
 
+    services.blueman-applet.enable = true;
+    services.network-manager-applet.enable = true;
+
     programs.git = {
       enable = true;
       userName = "rustysec";
       userEmail = "russ@infocyte.com";
     };
+
+    home.file.".ssh/config".text = ''
+AddKeysToAgent yes
+'';
 
     dconf.settings = {
         "org/virt-manager/virt-manager/connections" = {
@@ -112,6 +149,7 @@ Defaults pwfeedback
 
     home.packages = with pkgs; [
       clang
+      firefox
       foot
       go
       gopls

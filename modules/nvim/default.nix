@@ -137,12 +137,12 @@ in {
             { mode = "n"; key = "<leader>gP"; action = ":Gitsigns preview_hunk<cr>"; }
             { mode = "n"; key = "<leader>gr"; action = ":Gitsigns reset_hunk<cr>"; }
 
-            { mode = "n"; key = "<leader>bd"; action = ":lua require('mini.bufremove').delete<cr>"; }
+            { mode = "n"; key = "<leader>bd"; action = ":lua require('mini.bufremove').delete()<cr>"; }
             { mode = "n"; key = "<leader>wd"; action = "<C-W>c"; }
-            { mode = "n"; key = "<leader>w|"; action = "<C-W>s"; }
-            { mode = "n"; key = "<leader>|"; action = "<C-W>s"; }
-            { mode = "n"; key = "<leader>w-"; action = "<C-W>v"; }
-            { mode = "n"; key = "<leader>-"; action = "<C-W>v"; }
+            { mode = "n"; key = "<leader>w|"; action = "<C-W>v"; }
+            { mode = "n"; key = "<leader>|"; action = "<C-W>v"; }
+            { mode = "n"; key = "<leader>w-"; action = "<C-W>s"; }
+            { mode = "n"; key = "<leader>-"; action = "<C-W>s"; }
         ];
 
         extraPlugins = with pkgs.vimPlugins; [
