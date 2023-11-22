@@ -8,6 +8,8 @@
     keyMode = "vi";
     clock24 = true;
     extraConfig = ''
+      set -s escape-time 0
+
       bind | split-window -h
       bind ? split-window -v
 

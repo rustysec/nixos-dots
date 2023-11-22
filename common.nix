@@ -11,6 +11,12 @@ let
   };
 in
 {
+  hardware = {
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+  };
 
   services = {
     xserver = {
@@ -127,6 +133,8 @@ Defaults pwfeedback
   {
     home.stateVersion = "23.05";
 
+    nixpkgs.config.allowUnfree = true;
+
     services.blueman-applet.enable = true;
     services.network-manager-applet.enable = true;
 
@@ -150,6 +158,7 @@ AddKeysToAgent yes
     home.packages = with pkgs; [
       clang
       firefox
+      google-chrome
       foot
       go
       gopls

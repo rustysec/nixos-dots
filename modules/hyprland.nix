@@ -62,7 +62,7 @@ in {
       ",XF86AudioPrev,          exec,playerctl previous"
       ",Print,                  exec,grim -g \"$(slurp)\" - | wl-copy"
     ];
-
+    
     misc = {
       disable_hyprland_logo = true;
       disable_splash_rendering = true;
@@ -90,12 +90,24 @@ in {
       preserve_split = 2;
     };
 
+    gestures = {
+      workspace_swipe = true;
+      workspace_swipe_numbered = true;
+    };
+
+    "device:at-translated-set-2-keyboard" = {
+      kb_layout = "us";
+      kb_variant = "colemak";
+      kb_options = "caps:swapescape";
+    };
+
     exec = [
-      "waybar"
+      "killall -9 waybar ; waybar"
       "blueman-applet"
       "mako"
       "nm-applet --indicator"
       "swaybg -m fill --image ${wallpaper}"
+      "swayidle -w timeout 300 'bash ~/.config/locker/locker.sh' timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' before-sleep 'bash ~/.config/locker/locker.sh'"
     ];
   };
 
@@ -111,8 +123,20 @@ animations {
     animation = windows, 1, 4, ease
     animation = windowsOut, 1, 4, ease, popin 80%
     animation = fade, 1, 3, ease
-		animation = workspaces, 1, 3.5, ease
-		animation = border, 1, 6, ease
-	}
+    animation = workspaces, 1, 3.5, ease
+    animation = border, 1, 6, ease
+}
+
+input {
+    kb_layout = us
+    kb_variant = colemak
+
+    follow_mouse = 1
+    touchpad {
+        natural_scroll = true
+        clickfinger_behavior = true 
+        tap-to-click = false
+    }
+}
 '';
 }

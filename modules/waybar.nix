@@ -12,8 +12,20 @@
       modules-center = [ "hyprland/window" ];
       modules-right = [ "pulseaudio" "cpu" "memory" "clock" "tray" ];
 
+      "tray" = {
+        spacing = 10;
+      };
+
+      "mpris" = {
+        dynamic-len = 25;
+      };
+
       "clock" = {
         format = "{:%a | %b %d | %H:%M}";
+      };
+
+      "hyprland/window" = {
+        max-length = 25;
       };
     };
   };

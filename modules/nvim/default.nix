@@ -62,6 +62,7 @@ in {
               };
             };
 
+            luasnip.enable = true;
             cmp-nvim-lsp.enable = true;
             gitsigns.enable = true;
             nvim-cmp.enable = true;
@@ -113,7 +114,7 @@ in {
             { mode = "n"; key = "<leader>fb"; action = ":Telescope buffers<cr>"; }
             { mode = "n"; key = "<leader>fd"; action = ":Telescope diagnostics<cr>"; }
             { mode = "n"; key = "<leader>ff"; action = ":Telescope find_files<cr>"; }
-            { mode = "n"; key = "<leader>fg"; action = ":Telescope live_grep<cr>"; }
+            { mode = "n"; key = "<leader>fg"; action = "<cmd>Telescope live_grep<cr>"; }
             { mode = "n"; key = "<leader>fr"; action = ":Telescope lsp_references<cr>"; }
             { mode = "n"; key = "<leader>fs"; action = ":Telescope find_string<cr>"; }
             { mode = "n"; key = "<leader>ca"; action = ":lua vim.lsp.buf.actions()<cr>"; }
@@ -159,8 +160,14 @@ require("focus").setup({})
 local cmp = require("cmp")
 
 cmp.setup({
+    snippet = {
+      expand = function(args)
+        require("luasnip").lsp_expand(args.body)
+      end
+    },
     sources = {
-        { name = "nvim_lsp" }
+        { name = "nvim_lsp" },
+        { name = "luasnip" }
     },
     window = {
         completion = cmp.config.window.bordered(),
