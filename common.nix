@@ -67,7 +67,7 @@ Defaults pwfeedback
     shell = pkgs.zsh;
     isNormalUser = true;
     description = "Russ Morris";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "video" ];
     packages = with pkgs; [];
   };
 
@@ -102,6 +102,7 @@ Defaults pwfeedback
     dconf.enable = true;
     thunar.enable = true;
     ssh.startAgent = true;
+    light.enable = true;
   };
 
   virtualisation = {

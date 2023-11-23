@@ -114,46 +114,49 @@ in {
         };
 
         keymaps = [
-            { mode = "n"; key = "<leader>e"; action = ":Oil<cr>"; }
-            { mode = "n"; key = "<leader>|"; action = ":vsplit<cr>"; }
-            { mode = "n"; key = "<leader>-"; action = ":split<cr>"; }
-            { mode = "n"; key = "<leader>fb"; action = ":Telescope buffers<cr>"; }
-            { mode = "n"; key = "<leader>fd"; action = ":Telescope diagnostics<cr>"; }
-            { mode = "n"; key = "<leader>ff"; action = ":Telescope find_files<cr>"; }
-            { mode = "n"; key = "<leader>fg"; action = "<cmd>Telescope live_grep<cr>"; }
-            { mode = "n"; key = "<leader>fr"; action = ":Telescope lsp_references<cr>"; }
-            { mode = "n"; key = "<leader>fs"; action = ":Telescope lsp_document_symbols<cr>"; }
-            { mode = "n"; key = "<leader>fS"; action = ":Telescope lsp_dynamic_workspace_symbols<cr>"; }
-            { mode = "n"; key = "<leader>fw"; action = ":Telescope grep_string<cr>"; }
+            { mode = "n"; key = "<leader>e"; action = ":Oil<cr>"; options.silent = true; }
+            { mode = "n"; key = "<leader>|"; action = ":vsplit<cr>"; options.silent = true; }
+            { mode = "n"; key = "<leader>-"; action = ":split<cr>"; options.silent = true; }
+            { mode = "n"; key = "<leader>fb"; action = ":Telescope buffers<cr>"; options.silent = true; }
+            { mode = "n"; key = "<leader>fd"; action = ":Telescope diagnostics<cr>"; options.silent = true; }
+            { mode = "n"; key = "<leader>ff"; action = ":Telescope find_files<cr>"; options.silent = true; }
+            { mode = "n"; key = "<leader>fg"; action = "<cmd>Telescope live_grep<cr>"; options.silent = true; }
+            { mode = "n"; key = "<leader>fr"; action = ":Telescope lsp_references<cr>"; options.silent = true; }
+            { mode = "n"; key = "<leader>fs"; action = ":Telescope lsp_document_symbols<cr>"; options.silent = true; }
+            { mode = "n"; key = "<leader>fS"; action = ":Telescope lsp_dynamic_workspace_symbols<cr>"; options.silent = true; }
+            { mode = "n"; key = "<leader>fw"; action = ":Telescope grep_string<cr>"; options.silent = true; }
 
-            { mode = "n"; key = "<leader>ca"; action = ":lua vim.lsp.buf.actions()<cr>"; }
-            { mode = "n"; key = "<leader>cd"; action = ":lua vim.diagnostic.open_float()<cr>"; }
-            { mode = "n"; key = "<leader>cr"; action = ":lua vim.lsp.buf.rename()<cr>"; }
+            { mode = "n"; key = "<leader>ca"; action = ":lua vim.lsp.buf.actions()<cr>"; options.silent = true; }
+            { mode = "n"; key = "<leader>cd"; action = ":lua vim.diagnostic.open_float()<cr>"; options.silent = true; }
+            { mode = "n"; key = "<leader>cr"; action = ":lua vim.lsp.buf.rename()<cr>"; options.silent = true; }
 
-            { mode = "n"; key = "<C-h>"; action = ":wincmd h<cr>"; }
-            { mode = "n"; key = "<C-j>"; action = ":wincmd j<cr>"; }
-            { mode = "n"; key = "<C-k>"; action = ":wincmd k<cr>"; }
-            { mode = "n"; key = "<C-l>"; action = ":wincmd l<cr>"; }
-            { mode = "n"; key = "<C-Left>"; action = ":wincmd h<cr>"; }
-            { mode = "n"; key = "<C-Down>"; action = ":wincmd j<cr>"; }
-            { mode = "n"; key = "<C-Up>"; action = ":wincmd k<cr>"; }
-            { mode = "n"; key = "<C-Right>"; action = ":wincmd l<cr>"; }
-            { mode = "n"; key = "H"; action = ":bnext<cr>"; }
-            { mode = "n"; key = "L"; action = ":bprev<cr>"; }
+            { mode = "n"; key = "<C-h>"; action = ":wincmd h<cr>"; options.silent = true; }
+            { mode = "n"; key = "<C-j>"; action = ":wincmd j<cr>"; options.silent = true; }
+            { mode = "n"; key = "<C-k>"; action = ":wincmd k<cr>"; options.silent = true; }
+            { mode = "n"; key = "<C-l>"; action = ":wincmd l<cr>"; options.silent = true; }
+            { mode = "n"; key = "<C-Left>"; action = ":wincmd h<cr>"; options.silent = true; }
+            { mode = "n"; key = "<C-Down>"; action = ":wincmd j<cr>"; options.silent = true; }
+            { mode = "n"; key = "<C-Up>"; action = ":wincmd k<cr>"; options.silent = true; }
+            { mode = "n"; key = "<C-Right>"; action = ":wincmd l<cr>"; options.silent = true; }
+            { mode = "n"; key = "H"; action = ":bnext<cr>"; options.silent = true; }
+            { mode = "n"; key = "L"; action = ":bprev<cr>"; options.silent = true; }
 
-            { mode = "n"; key = "<leader>gb"; action = ":Gitsigns blame_line<cr>"; }
-            { mode = "n"; key = "<leader>gl"; action = ":Gitsigns prev_hunk<cr>"; }
-            { mode = "n"; key = "<leader>gn"; action = ":Gitsigns next_hunk<cr>"; }
-            { mode = "n"; key = "<leader>gp"; action = ":Gitsigns preview_hunk_inline<cr>"; }
-            { mode = "n"; key = "<leader>gP"; action = ":Gitsigns preview_hunk<cr>"; }
-            { mode = "n"; key = "<leader>gr"; action = ":Gitsigns reset_hunk<cr>"; }
+            { mode = "n"; key = "<leader>gb"; action = ":Gitsigns blame_line<cr>"; options.silent = true; }
+            { mode = "n"; key = "<leader>gl"; action = ":Gitsigns prev_hunk<cr>"; options.silent = true; }
+            { mode = "n"; key = "<leader>gn"; action = ":Gitsigns next_hunk<cr>"; options.silent = true; }
+            { mode = "n"; key = "<leader>gp"; action = ":Gitsigns preview_hunk_inline<cr>"; options.silent = true; }
+            { mode = "n"; key = "<leader>gP"; action = ":Gitsigns preview_hunk<cr>"; options.silent = true; }
+            { mode = "n"; key = "<leader>gr"; action = ":Gitsigns reset_hunk<cr>"; options.silent = true; }
 
-            { mode = "n"; key = "<leader>bd"; action = ":lua require('mini.bufremove').delete()<cr>"; }
+            { mode = "n"; key = "<leader>bd"; action = ":lua require('mini.bufremove').delete()<cr>"; options.silent = true;}
             { mode = "n"; key = "<leader>wd"; action = "<C-W>c"; }
             { mode = "n"; key = "<leader>w|"; action = "<C-W>v"; }
             { mode = "n"; key = "<leader>|"; action = "<C-W>v"; }
             { mode = "n"; key = "<leader>w-"; action = "<C-W>s"; }
             { mode = "n"; key = "<leader>-"; action = "<C-W>s"; }
+
+            { mode = "n"; key = "<esc>"; action = "<esc>:noh<cr>"; options.silent = true; }
+            { mode = "i"; key = "<esc>"; action = "<esc>:noh<cr>"; options.silent = true;}
         ];
 
         extraPlugins = with pkgs.vimPlugins; [

@@ -10,7 +10,7 @@
       spacing = 4;
       modules-left = [ "hyprland/workspaces" "mpris" ];
       modules-center = [ "hyprland/window" ];
-      modules-right = [ "pulseaudio" "cpu" "memory" "clock" "tray" ];
+      modules-right = [ "pulseaudio" "battery" "backlight" "cpu" "memory" "clock" "tray" ];
 
       "tray" = {
         spacing = 10;
@@ -26,6 +26,71 @@
 
       "hyprland/window" = {
         max-length = 25;
+      };
+
+      "cpu" = {
+        "format" = "{usage}% ";
+        "tooltip" = false;
+      };
+
+      "memory" = {
+        "format" = "{}% ";
+      };
+
+      "backlight" = {
+        "format" = "{percent}% {icon}";
+        "format-icons" = ["" "" "" "" "" "" "" "" ""];
+      };
+
+      "battery" = {
+        "states" = {
+          "warning" = 30;
+          "critical" = 15;
+        };
+        "format" = "{capacity}% {icon}";
+        "format-charging" = "{capacity}% ";
+        "format-plugged" = "{capacity}% ";
+        "format-alt" = "{time} {icon}";
+        "format-icons" = ["" "" "" "" ""];
+      };
+
+      "pulseaudio" = {
+        "format" = "{volume}% {icon} {format_source}";
+        "format-bluetooth" = "{volume}% {icon}  {format_source}";
+        "format-bluetooth-muted" = " {icon}  {format_source}";
+        "format-muted" = " {format_source}";
+        "format-source" = "{volume}% ";
+        "format-source-muted" = "";
+        "format-icons" = {
+            "headphone" = "";
+            "hands-free" = "";
+            "headset" = "";
+            "phone" = "";
+            "portable" = "";
+            "car" = "";
+            "default" = ["" "" ""];
+        };
+        "on-click" = "pavucontrol";
+      };
+
+      "mpris" = {
+        "format" = "{status_icon} {player_icon} {artist} - {title}";
+        "player-icons" = {
+          "default" = "🎵";
+          "chrome" = "";
+          "chromium" = "";
+          "firefox" = "";
+        };
+        "status-icons" = {
+          "paused" = "";
+          "playing" = "";
+        };
+      };
+
+      "bluetooth" = {
+        "format" = " {status}";
+        "format-connected" = " {device_alias}";
+        "format-connected-battery" = " {device_alias} {device_battery_percentage}%";
       };
     };
   };
