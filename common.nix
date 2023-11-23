@@ -218,7 +218,7 @@ case $OPT in
         hyprctl dispatch exit 0
         ;;
     "Lock")
-        /usr/bin/bash ~/.config/locker/locker.sh
+        sh ~/.config/locker/locker.sh
         ;;
     *)
         echo "Doing Nothing!"
