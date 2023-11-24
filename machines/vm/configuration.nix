@@ -5,7 +5,6 @@
     ../../common.nix
     inputs.home-manager.nixosModules.default
   ];
-  boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
@@ -28,7 +27,6 @@
   };
   services.qemuGuest.enable = true;
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [
-  ];
+  environment.systemPackages = with pkgs; [];
   system.stateVersion = "23.05";
 }

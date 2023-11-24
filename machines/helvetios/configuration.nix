@@ -27,12 +27,6 @@
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [];
   system.stateVersion = "23.05";
-
-  boot.kernelParams = [ "quiet" ];
+  boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.consoleMode = "1";
-  boot.plymouth = {
-    enable = true;
-    theme = "breeze";
-  };
-  boot.initrd.systemd.enable = true;
 }

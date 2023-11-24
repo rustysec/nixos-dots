@@ -11,6 +11,15 @@ let
   };
 in
 {
+  boot= {
+    kernelParams = [ "quiet" ];
+    plymouth = {
+      enable = true;
+      theme = "breeze";
+    };
+    initrd.systemd.enable = true;
+  };
+
   hardware = {
     bluetooth = {
       enable = true;
@@ -52,6 +61,7 @@ in
     };
 
     blueman.enable = true;
+    thermald.enable = true;
   };
 
   security = {
@@ -135,6 +145,7 @@ Defaults pwfeedback
     };
   };
 
+  powerManagement.powertop.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
