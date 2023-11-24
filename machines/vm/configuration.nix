@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ inputs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -27,6 +27,6 @@
   };
   services.qemuGuest.enable = true;
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [];
+  environment.systemPackages = [ ];
   system.stateVersion = "23.05";
 }

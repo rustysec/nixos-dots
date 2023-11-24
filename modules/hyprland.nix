@@ -1,13 +1,13 @@
-{
-  pkgs,
-  ...
+{ pkgs
+, ...
 }:
 let
   wallpaper = pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/nixos/nixos-artwork/master/wallpapers/nix-wallpaper-stripes-logo.png";
     sha256 = "d4ca0fc32b70f24062cbe4b1ef4c661e7c4c260a8468e47d60481030ee9b1233";
   };
-in {
+in
+{
   wayland.windowManager.hyprland.enable = true;
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
@@ -122,33 +122,33 @@ in {
   };
 
   wayland.windowManager.hyprland.extraConfig = ''
-env = GTK_THEME,Adwaita-dark
+    env = GTK_THEME,Adwaita-dark
 
-general {
-    col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
-    col.inactive_border = rgba(595959aa)
-}
-
-animations {
-    enabled = true
-    bezier = ease, 0.05, 0.9, 0.1, 1.05
-    animation = windows, 1, 4, ease
-    animation = windowsOut, 1, 4, ease, popin 80%
-    animation = fade, 1, 3, ease
-    animation = workspaces, 1, 3.5, ease
-    animation = border, 1, 6, ease
-}
-
-input {
-    kb_layout = us
-    kb_variant = colemak
-
-    follow_mouse = 1
-    touchpad {
-        natural_scroll = true
-        clickfinger_behavior = true 
-        tap-to-click = false
+    general {
+        col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
+        col.inactive_border = rgba(595959aa)
     }
-}
-'';
+
+    animations {
+        enabled = true
+        bezier = ease, 0.05, 0.9, 0.1, 1.05
+        animation = windows, 1, 4, ease
+        animation = windowsOut, 1, 4, ease, popin 80%
+        animation = fade, 1, 3, ease
+        animation = workspaces, 1, 3.5, ease
+        animation = border, 1, 6, ease
+    }
+
+    input {
+        kb_layout = us
+        kb_variant = colemak
+
+        follow_mouse = 1
+        touchpad {
+            natural_scroll = true
+            clickfinger_behavior = true 
+            tap-to-click = false
+        }
+    }
+  '';
 }

@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ inputs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -25,7 +25,7 @@
     xkbVariant = "";
   };
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [];
+  environment.systemPackages = [ ];
   system.stateVersion = "23.05";
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.consoleMode = "1";

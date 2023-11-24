@@ -1,8 +1,6 @@
-{
-  inputs,
-  pkgs,
-  nixvim,
-  ...
+{ inputs
+, pkgs
+, ...
 }:
 let
   wallpaper = pkgs.fetchurl {
@@ -11,7 +9,7 @@ let
   };
 in
 {
-  boot= {
+  boot = {
     kernelParams = [ "quiet" ];
     plymouth = {
       enable = true;
@@ -67,9 +65,9 @@ in
   security = {
     polkit.enable = true;
     rtkit.enable = true;
-    pam.services.swaylock = {};
+    pam.services.swaylock = { };
     sudo.configFile = ''
-Defaults pwfeedback
+      Defaults pwfeedback
     '';
   };
 
@@ -78,7 +76,7 @@ Defaults pwfeedback
     isNormalUser = true;
     description = "Russ Morris";
     extraGroups = [ "networkmanager" "wheel" "libvirtd" "video" ];
-    packages = with pkgs; [];
+    packages = [ ];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -94,6 +92,8 @@ Defaults pwfeedback
     mate.mate-polkit
     neovim
     networkmanagerapplet
+    nil
+    nixpkgs-fmt
     pavucontrol
     psmisc
     tmux
@@ -149,116 +149,116 @@ Defaults pwfeedback
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  home-manager.users.russ = { pkgs, ... }: 
-  {
-    home.stateVersion = "23.05";
+  home-manager.users.russ = { pkgs, ... }:
+    {
+      home.stateVersion = "23.05";
 
-    nixpkgs.config.allowUnfree = true;
+      nixpkgs.config.allowUnfree = true;
 
-    services.blueman-applet.enable = true;
-    services.network-manager-applet.enable = true;
+      services.blueman-applet.enable = true;
+      services.network-manager-applet.enable = true;
 
-    programs.git = {
-      enable = true;
-      userName = "rustysec";
-      userEmail = "russ@infocyte.com";
-    };
+      programs.git = {
+        enable = true;
+        userName = "rustysec";
+        userEmail = "russ@infocyte.com";
+      };
 
-    home.sessionPath = [
-      "$HOME/.cargo/bin"
-    ];
+      home.sessionPath = [
+        "$HOME/.cargo/bin"
+      ];
 
-    home.file.".ssh/config".text = ''
-AddKeysToAgent yes
-'';
+      home.file.".ssh/config".text = ''
+        AddKeysToAgent yes
+      '';
 
-    dconf.settings = {
+      dconf.settings = {
         "org/virt-manager/virt-manager/connections" = {
-          autoconnect = ["qemu:///system"];
-          uris = ["qemu:///system"];
+          autoconnect = [ "qemu:///system" ];
+          uris = [ "qemu:///system" ];
         };
+      };
+
+      home.packages = with pkgs; [
+        clang
+        firefox
+        google-chrome
+        foot
+        go
+        gopls
+        grim
+        libclang
+        pamixer
+        playerctl
+        ripgrep
+        rustup
+        slurp
+        swaybg
+        swayidle
+        swaylock
+        typescript
+        virt-manager
+        wl-clipboard
+      ];
+
+      imports = [
+        inputs.nixvim.homeManagerModules.nixvim
+        ./modules/foot.nix
+        ./modules/hyprland.nix
+        ./modules/mako.nix
+        ./modules/nvim/default.nix
+        ./modules/tmux.nix
+        ./modules/waybar.nix
+        ./modules/wofi.nix
+        ./modules/zsh.nix
+      ];
+
+      home.file.".config/locker/menu.sh".text = ''
+        #!/bin/bash
+
+        OPT=$(cat ~/.config/locker/options | wofi --insensitive --dmenu)
+
+        case $OPT in
+            "Shutdown")
+                systemctl poweroff
+                ;;
+            "Restart")
+                systemctl reboot
+                ;;
+            "Logout")
+                hyprctl dispatch exit 0
+                ;;
+            "Lock")
+                sh ~/.config/locker/locker.sh
+                ;;
+            *)
+                echo "Doing Nothing!"
+                ;;
+        esac
+      '';
+
+      home.file.".config/locker/locker.sh".text = ''
+        #!/bin/bash
+
+        swaylock --image ${wallpaper} -f -c 282c34 \
+        	--inside-color 282c34 \
+        	--inside-wrong-color ed1515 \
+        	--ring-wrong-color ed1515 \
+        	--inside-ver-color f67400 \
+        	--ring-ver-color f67400 \
+        	--ring-color 1d99f3 \
+        	--ring-clear-color 1b668f \
+        	--line-clear-color 1b668f \
+        	--inside-clear-color 16a085 \
+        	--key-hl-color 3daee9 \
+        	--bs-hl-color b65619
+      '';
+
+      home.file.".config/locker/options".text = ''
+        Lock
+        Logout
+        Restart
+        Shutdown
+      '';
     };
-
-    home.packages = with pkgs; [
-      clang
-      firefox
-      google-chrome
-      foot
-      go
-      gopls
-      grim
-      libclang
-      pamixer
-      playerctl
-      ripgrep
-      rustup
-      slurp
-      swaybg
-      swayidle
-      swaylock
-      typescript
-      virt-manager
-      wl-clipboard
-    ];
-
-    imports = [
-      inputs.nixvim.homeManagerModules.nixvim
-      ./modules/foot.nix
-      ./modules/hyprland.nix
-      ./modules/mako.nix
-      ./modules/nvim/default.nix
-      ./modules/tmux.nix
-      ./modules/waybar.nix
-      ./modules/wofi.nix
-      ./modules/zsh.nix
-    ];
-
-    home.file.".config/locker/menu.sh".text = ''
-#!/bin/bash
-
-OPT=$(cat ~/.config/locker/options | wofi --insensitive --dmenu)
-
-case $OPT in
-    "Shutdown")
-        systemctl poweroff
-        ;;
-    "Restart")
-        systemctl reboot
-        ;;
-    "Logout")
-        hyprctl dispatch exit 0
-        ;;
-    "Lock")
-        sh ~/.config/locker/locker.sh
-        ;;
-    *)
-        echo "Doing Nothing!"
-        ;;
-esac
-    '';
-
-    home.file.".config/locker/locker.sh".text = ''
-#!/bin/bash
-
-swaylock --image ${wallpaper} -f -c 282c34 \
-	--inside-color 282c34 \
-	--inside-wrong-color ed1515 \
-	--ring-wrong-color ed1515 \
-	--inside-ver-color f67400 \
-	--ring-ver-color f67400 \
-	--ring-color 1d99f3 \
-	--ring-clear-color 1b668f \
-	--line-clear-color 1b668f \
-	--inside-clear-color 16a085 \
-	--key-hl-color 3daee9 \
-	--bs-hl-color b65619
-    '';
-
-    home.file.".config/locker/options".text = ''
-Lock
-Logout
-Restart
-Shutdown
-    '';
-  };
 }
