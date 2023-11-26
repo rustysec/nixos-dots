@@ -89,6 +89,7 @@ in
     gnome.adwaita-icon-theme
     gnome.gnome-themes-extra
     greetd.wlgreet
+    kanshi
     mate.mate-polkit
     neovim
     networkmanagerapplet
@@ -204,7 +205,9 @@ in
       imports = [
         inputs.nixvim.homeManagerModules.nixvim
         ./modules/foot.nix
+        ./modules/fuzzel.nix
         ./modules/hyprland.nix
+        ./modules/kanshi.nix
         ./modules/mako.nix
         ./modules/nvim/default.nix
         ./modules/tmux.nix
@@ -216,7 +219,7 @@ in
       home.file.".config/locker/menu.sh".text = ''
         #!/bin/bash
 
-        OPT=$(cat ~/.config/locker/options | wofi --insensitive --dmenu)
+        OPT=$(cat ~/.config/locker/options | fuzzel -d)
 
         case $OPT in
             "Shutdown")
