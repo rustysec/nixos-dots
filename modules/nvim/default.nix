@@ -33,8 +33,13 @@ in
     };
 
     colorschemes = {
-      tokyonight = {
+      catppuccin = {
         enable = true;
+        flavour = "frappe";
+        transparentBackground = true;
+      };
+      tokyonight = {
+        enable = false;
         transparent = true;
         styles = {
           sidebars = "transparent";
@@ -95,7 +100,7 @@ in
       lualine = {
         enable = true;
         globalstatus = true;
-        theme = "tokyonight";
+        # theme = "tokyonight";
         winbar = {
           lualine_c = [
             "filename"

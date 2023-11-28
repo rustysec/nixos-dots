@@ -180,7 +180,45 @@ in
         };
       };
 
+      home.pointerCursor = {
+        name = "Catppuccin-Frappe-Dark-Cursors";
+        size = 24;
+        package = pkgs.catppuccin-cursors.frappeDark;
+      };
+
+      gtk = {
+        enable = true;
+        font = {
+          name = "Hack Nerd Font";
+          package = pkgs.nerdfonts;
+        };
+        iconTheme = {
+          name = "Papirus";
+          package = pkgs.papirus-icon-theme;
+        };
+        theme = {
+          name = "Catppuccin-Frappe-Standard-Blue-Dark";
+          package = pkgs.catppuccin-gtk;
+        };
+        cursorTheme = {
+          name = "Catppuccin-Frappe-Dark-Cursors";
+          size = 24;
+          package = pkgs.catppuccin-cursors.frappeDark;
+        };
+        gtk3.extraConfig = {
+          Settings = ''
+            gtk-application-prefer-dark-theme=1
+          '';
+        };
+        gtk4.extraConfig = {
+          Settings = ''
+            gtk-application-prefer-dark-theme=1
+          '';
+        };
+      };
+
       home.packages = with pkgs; [
+        catppuccin-cursors.frappeDark
         clang
         firefox
         google-chrome
@@ -190,6 +228,7 @@ in
         grim
         libclang
         pamixer
+        papirus-icon-theme
         playerctl
         ripgrep
         rustup
@@ -219,24 +258,24 @@ in
       home.file.".config/locker/menu.sh".text = ''
         #!/bin/bash
 
-        OPT=$(cat ~/.config/locker/options | fuzzel -d)
+        OPT=$(cat ~/.config/locker/options | fuzzel -d -l 4)
 
         case $OPT in
-            "Shutdown")
-                systemctl poweroff
-                ;;
-            "Restart")
-                systemctl reboot
-                ;;
-            "Logout")
-                hyprctl dispatch exit 0
-                ;;
-            "Lock")
-                sh ~/.config/locker/locker.sh
-                ;;
-            *)
-                echo "Doing Nothing!"
-                ;;
+          "⏻ Shutdown")
+            systemctl poweroff
+            ;;
+          " Restart")
+            systemctl reboot
+            ;;
+          "󰩈 Logout")
+            hyprctl dispatch exit 0
+            ;;
+          " Lock")
+            sh ~/.config/locker/locker.sh
+            ;;
+          *)
+            echo "Doing Nothing!"
+            ;;
         esac
       '';
 
@@ -244,24 +283,24 @@ in
         #!/bin/bash
 
         swaylock --image ${wallpaper} -f -c 282c34 \
-        	--inside-color 282c34 \
-        	--inside-wrong-color ed1515 \
-        	--ring-wrong-color ed1515 \
-        	--inside-ver-color f67400 \
-        	--ring-ver-color f67400 \
-        	--ring-color 1d99f3 \
-        	--ring-clear-color 1b668f \
-        	--line-clear-color 1b668f \
-        	--inside-clear-color 16a085 \
-        	--key-hl-color 3daee9 \
-        	--bs-hl-color b65619
+          --inside-color 282c34 \
+          --inside-wrong-color ed1515 \
+          --ring-wrong-color ed1515 \
+          --inside-ver-color f67400 \
+          --ring-ver-color f67400 \
+          --ring-color 1d99f3 \
+          --ring-clear-color 1b668f \
+          --line-clear-color 1b668f \
+          --inside-clear-color 16a085 \
+          --key-hl-color 3daee9 \
+          --bs-hl-color b65619
       '';
 
       home.file.".config/locker/options".text = ''
-        Lock
-        Logout
-        Restart
-        Shutdown
+         Lock
+        󰩈 Logout
+         Restart
+        ⏻ Shutdown
       '';
     };
 }

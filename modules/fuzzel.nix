@@ -5,18 +5,21 @@
   programs.fuzzel.enable = true;
   programs.fuzzel.settings = {
     main = {
+      prompt = "'󰍉 '";
       terminal = "${pkgs.foot}/bin/foot";
-      font = "Hack Nerd Font:size=11";
+      font = "Hack Nerd Font:size=20";
       layer = "overlay";
-      icon-theme = "Adwaita";
-      horizontal-pad = 50;
-      vertical-pad = 15;
+      icon-theme = "Papirus";
+      horizontal-pad = 100;
+      vertical-pad = 50;
+      inner-pad = 20;
+      width = 50;
     };
     colors = {
-      border = "33ccffee";
-      background = "1a1c1eff";
-      text = "ffffffff";
-      selection = "151718ff";
+      border = "94e2d5ff";
+      background = "181825ff";
+      text = "cdd6f4ff";
+      selection = "9399b2ff";
     };
     border = {
       width = 5;
