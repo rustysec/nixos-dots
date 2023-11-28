@@ -19,7 +19,8 @@
       border = "94e2d5ff";
       background = "181825ff";
       text = "cdd6f4ff";
-      selection = "9399b2ff";
+      selection = "89b4faff";
+      selection-text = "181825ff";
     };
     border = {
       width = 5;

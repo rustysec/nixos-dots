@@ -1,11 +1,16 @@
 { ...
 }:
 {
-  programs.zsh.enable = true;
-  programs.zsh.enableCompletion = true;
-  programs.zsh.enableAutosuggestions = true;
-  programs.zsh.oh-my-zsh = {
+  programs.zsh = {
     enable = true;
-    theme = "flazz";
+    enableCompletion = true;
+    enableAutosuggestions = true;
+    oh-my-zsh = {
+      enable = true;
+      theme = "flazz";
+      extraConfig = ''
+        source ~/.zsh/catppuccin/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh
+      '';
+    };
   };
 }

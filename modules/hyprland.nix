@@ -70,6 +70,12 @@
 
       decoration = {
         rounding = 0;
+
+        blur = {
+          enabled = false;
+          size = 10;
+          passes = 3;
+        };
       };
 
       general = {
@@ -111,14 +117,14 @@
 
         "hyprctl setcursor Catppuccin-Frappe-Dark-Cursors 24"
         "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
-        "gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'"
+        "gsettings set org.gnome.desktop.interface gtk-theme 'Catppuccin-Mocha-Standard-Blue-Dark'"
         "gsettings set org.gnome.desktop.interface icon-theme 'Papirus'"
         "gsettings set org.gnome.desktop.interface cursor-theme 'Catppuccin-Frappe-Dark-Cursors'"
       ];
     };
 
     extraConfig = ''
-      # env = GTK_THEME,Adwaita-dark
+      env = GTK_THEME,Catppuccin-Mocha-Standard-Blue-Dark
 
       $rosewaterAlpha = f5e0dc
       $flamingoAlpha  = f2cdcd

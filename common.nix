@@ -3,9 +3,13 @@
 , ...
 }:
 let
+  # wallpaper_nixos = pkgs.fetchurl {
+  #   url = "https://raw.githubusercontent.com/nixos/nixos-artwork/master/wallpapers/nix-wallpaper-stripes-logo.png";
+  #   sha256 = "d4ca0fc32b70f24062cbe4b1ef4c661e7c4c260a8468e47d60481030ee9b1233";
+  # };
   wallpaper = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/nixos/nixos-artwork/master/wallpapers/nix-wallpaper-stripes-logo.png";
-    sha256 = "d4ca0fc32b70f24062cbe4b1ef4c661e7c4c260a8468e47d60481030ee9b1233";
+    url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/master/wallpapers/nix-wallpaper-nineish-dark-gray.png";
+    hash = "sha256-nhIUtCy/Hb8UbuxXeL3l3FMausjQrnjTVi1B3GkL9B8=";
   };
 in
 {
@@ -128,6 +132,7 @@ in
     font-awesome
     hack-font
     nerdfonts
+    roboto
   ];
 
   systemd = {
@@ -181,27 +186,32 @@ in
       };
 
       home.pointerCursor = {
-        name = "Catppuccin-Frappe-Dark-Cursors";
+        name = "Catppuccin-Mocha-Dark-Cursors";
         size = 24;
-        package = pkgs.catppuccin-cursors.frappeDark;
+        package = pkgs.catppuccin-cursors.mochaDark;
       };
 
       gtk = {
         enable = true;
         font = {
-          name = "Hack Nerd Font";
-          package = pkgs.nerdfonts;
+          name = "Roboto";
+          package = pkgs.roboto;
         };
         iconTheme = {
           name = "Papirus";
           package = pkgs.papirus-icon-theme;
         };
         theme = {
-          name = "Catppuccin-Frappe-Standard-Blue-Dark";
-          package = pkgs.catppuccin-gtk;
+          name = "Catppuccin-Mocha-Standard-Blue-Dark";
+          package = pkgs.catppuccin-gtk.override {
+            accents = [ "blue" ];
+            size = "standard";
+            tweaks = [ ];
+            variant = "mocha";
+          };
         };
         cursorTheme = {
-          name = "Catppuccin-Frappe-Dark-Cursors";
+          name = "Catppuccin-Mocha-Dark-Cursors";
           size = 24;
           package = pkgs.catppuccin-cursors.frappeDark;
         };
@@ -218,7 +228,8 @@ in
       };
 
       home.packages = with pkgs; [
-        catppuccin-cursors.frappeDark
+        catppuccin-cursors.mochaDark
+        catppuccin-gtk
         clang
         firefox
         google-chrome
@@ -291,5 +302,12 @@ in
          Restart
         ⏻ Shutdown
       '';
+
+      home.file.".zsh/catppuccin" = {
+        source = builtins.fetchGit {
+          url = "https://github.com/catppuccin/zsh-syntax-highlighting.git";
+          rev = "06d519c20798f0ebe275fc3a8101841faaeee8ea";
+        };
+      };
     };
 }
