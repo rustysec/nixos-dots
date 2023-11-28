@@ -1,12 +1,6 @@
-{ pkgs
+{ wallpaper
 , ...
 }:
-let
-  wallpaper = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/nixos/nixos-artwork/master/wallpapers/nix-wallpaper-stripes-logo.png";
-    sha256 = "d4ca0fc32b70f24062cbe4b1ef4c661e7c4c260a8468e47d60481030ee9b1233";
-  };
-in
 {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -113,7 +107,7 @@ in
         "mako"
         "nm-applet --indicator"
         "swaybg -m fill --image ${wallpaper}"
-        "swayidle -w timeout 300 'bash ~/.config/locker/locker.sh' timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' before-sleep 'bash ~/.config/locker/locker.sh'"
+        "swayidle -w timeout 300 'swaylock' timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' before-sleep 'swaylock'"
 
         "hyprctl setcursor Catppuccin-Frappe-Dark-Cursors 24"
         "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"

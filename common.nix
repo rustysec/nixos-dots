@@ -245,10 +245,16 @@ in
         inputs.nixvim.homeManagerModules.nixvim
         ./modules/foot.nix
         ./modules/fuzzel.nix
-        ./modules/hyprland.nix
+        (import ./modules/hyprland.nix {
+          inherit wallpaper;
+        })
         ./modules/kanshi.nix
         ./modules/mako.nix
         ./modules/nvim/default.nix
+        (import ./modules/swaylock.nix
+          {
+            inherit wallpaper;
+          })
         ./modules/tmux.nix
         ./modules/waybar.nix
         ./modules/wofi.nix
@@ -271,29 +277,12 @@ in
             hyprctl dispatch exit 0
             ;;
           " Lock")
-            sh ~/.config/locker/locker.sh
+            swaylock
             ;;
           *)
             echo "Doing Nothing!"
             ;;
         esac
-      '';
-
-      home.file.".config/locker/locker.sh".text = ''
-        #!/bin/bash
-
-        swaylock --image ${wallpaper} -f -c 282c34 \
-          --inside-color 282c34 \
-          --inside-wrong-color ed1515 \
-          --ring-wrong-color ed1515 \
-          --inside-ver-color f67400 \
-          --ring-ver-color f67400 \
-          --ring-color 1d99f3 \
-          --ring-clear-color 1b668f \
-          --line-clear-color 1b668f \
-          --inside-clear-color 16a085 \
-          --key-hl-color 3daee9 \
-          --bs-hl-color b65619
       '';
 
       home.file.".config/locker/options".text = ''

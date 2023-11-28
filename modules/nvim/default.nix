@@ -35,7 +35,7 @@ in
     colorschemes = {
       catppuccin = {
         enable = true;
-        flavour = "frappe";
+        flavour = "mocha";
         transparentBackground = true;
       };
       tokyonight = {
@@ -184,6 +184,8 @@ in
 
     extraConfigLua = ''
       vim.opt.list = true
+      vim.opt.splitbelow = true
+      vim.opt.splitright = true
 
       require("focus").setup({})
 
