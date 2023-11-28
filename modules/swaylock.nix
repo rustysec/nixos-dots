@@ -16,13 +16,14 @@
       inside-wrong-color = "00000000";
       inside-ver-color = "00000000";
       inside-clear-color = "00000000";
-      ring-color = "181825";
+      ring-color = "7f849c";
       ring-clear-color = "a6e4a1";
       ring-ver-color = "94e2d5";
       ring-wrong-color = "f38ba8";
+      line-uses-ring = true;
       bs-hl-color = "cba6f7";
       key-hl-color = "a6e3a1";
-      separator-color = "181825";
+      separator-color = "7f849c";
     };
   };
 }
