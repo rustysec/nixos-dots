@@ -43,6 +43,8 @@ in
       enable = true;
     };
 
+    fstrim.enable = true;
+
     greetd = {
       enable = true;
       settings = {
@@ -153,7 +155,19 @@ in
 
   powerManagement.powertop.enable = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix = {
+    gc = {
+      automatic = true;
+      dates = "daily";
+      options = "--delete-older-than 14d";
+    };
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      auto-optimise-store = true;
+      keep-derivations = false;
+    };
+    optimise.automatic = true;
+  };
 
   home-manager.users.russ = { pkgs, ... }:
     {
