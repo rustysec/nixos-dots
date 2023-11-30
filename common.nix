@@ -3,13 +3,17 @@
 , ...
 }:
 let
-  # wallpaper_nixos = pkgs.fetchurl {
+  # wallpaper_stripes = pkgs.fetchurl {
   #   url = "https://raw.githubusercontent.com/nixos/nixos-artwork/master/wallpapers/nix-wallpaper-stripes-logo.png";
   #   sha256 = "d4ca0fc32b70f24062cbe4b1ef4c661e7c4c260a8468e47d60481030ee9b1233";
   # };
-  wallpaper = pkgs.fetchurl {
+  wallpaper_lock = pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/master/wallpapers/nix-wallpaper-nineish-dark-gray.png";
     hash = "sha256-nhIUtCy/Hb8UbuxXeL3l3FMausjQrnjTVi1B3GkL9B8=";
+  };
+  wallpaper = pkgs.fetchurl {
+    url = "https://w.wallhaven.cc/full/m9/wallhaven-m9lxe9.jpg";
+    hash = "sha256-d1vJ+RuCHNBu0keOA9ACQne0yzZ28C8rWpLl0a0Drkg=";
   };
 in
 {
@@ -297,7 +301,7 @@ in
         ./modules/nvim/default.nix
         (import ./modules/swaylock.nix
           {
-            inherit wallpaper;
+            inherit wallpaper_lock;
           })
         ./modules/tmux.nix
         ./modules/waybar.nix

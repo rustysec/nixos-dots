@@ -1,11 +1,11 @@
-{ wallpaper
+{ wallpaper_lock
 , ...
 }:
 {
   programs.swaylock = {
     enable = true;
     settings = {
-      image = "${wallpaper}";
+      image = "${wallpaper_lock}";
       text-color = "cdd6f4";
       text-clear-color = "cdd6f4";
       text-caps-lock-color = "cdd6f4";

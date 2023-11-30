@@ -72,9 +72,9 @@
         rounding = 0;
 
         blur = {
-          enabled = false;
-          size = 10;
-          passes = 3;
+          enabled = true;
+          size = 5;
+          passes = 1;
         };
       };
 
