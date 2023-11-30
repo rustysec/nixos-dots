@@ -107,13 +107,13 @@
       };
 
       exec = [
-        "pkill -9 kanshi; kanshi"
+        "pkill -9 kanshi ; kanshi"
         "pkill -9 waybar ; waybar"
+        "pkill -9 swaybg ; swaybg -m fill --image ${wallpaper}"
+        "pkill -9 swayidle ; swayidle -w timeout 300 'swaylock' timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' before-sleep 'swaylock'"
         "blueman-applet"
         "mako"
         "nm-applet --indicator"
-        "swaybg -m fill --image ${wallpaper}"
-        "swayidle -w timeout 300 'swaylock' timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' before-sleep 'swaylock'"
 
         "hyprctl setcursor Catppuccin-Frappe-Dark-Cursors 24"
         "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
