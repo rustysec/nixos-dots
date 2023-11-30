@@ -34,6 +34,13 @@ in
   };
   nixpkgs.config.allowUnfree = true;
 
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 1024 * 8;
+    }
+  ];
+
   boot = {
     loader = {
       systemd-boot.enable = true;

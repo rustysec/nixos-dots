@@ -183,6 +183,7 @@
     }
 
     #workspaces button.active {
+      border-top: 2px solid @teal;
       border-bottom: 2px solid @teal;
       margin-right: 5px;
     }
@@ -228,11 +229,11 @@
     }
 
     .modules-left {
-      margin-left: 5px;
+      margin-left: 10px;
     }
 
     .modules-right {
-      margin-right: 5px;
+      margin-right: 10px;
     }
 
     .modules-left > widget:first-child > #workspaces {
