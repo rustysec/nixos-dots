@@ -201,7 +201,7 @@ in
 
   home-manager.users.russ = { pkgs, ... }:
     {
-      home.stateVersion = "23.05";
+      home.stateVersion = "23.11";
 
       nixpkgs.config.allowUnfree = true;
 
@@ -276,7 +276,6 @@ in
         catppuccin-gtk
         clang
         firefox
-        google-chrome
         foot
         go
         gopls
@@ -298,6 +297,7 @@ in
 
       imports = [
         inputs.nixvim.homeManagerModules.nixvim
+        ./modules/firefox.nix
         ./modules/foot.nix
         ./modules/fuzzel.nix
         (import ./modules/hyprland.nix {

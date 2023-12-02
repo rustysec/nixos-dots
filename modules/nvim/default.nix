@@ -58,6 +58,7 @@ in
       cmp-clippy.enable = true;
       cmp-nvim-lsp.enable = true;
       cmp-path.enable = true;
+      comment-nvim.enable = true;
       crates-nvim.enable = true;
       gitsigns.enable = true;
       illuminate.enable = true;
@@ -69,6 +70,16 @@ in
       todo-comments.enable = true;
       treesitter-context.enable = true;
       treesitter-textobjects.enable = true;
+
+      navbuddy = {
+        enable = true;
+        lsp.autoAttach = true;
+      };
+
+      navic = {
+        enable = true;
+        lsp.autoAttach = true;
+      };
 
       telescope = {
         enable = true;
@@ -102,11 +113,11 @@ in
       lualine = {
         enable = true;
         globalstatus = true;
-        # theme = "tokyonight";
         winbar = {
           lualine_c = [
             "filename"
             "diagnostics"
+            "navic"
           ];
         };
         inactiveWinbar = {
@@ -145,6 +156,7 @@ in
 
       { mode = "n"; key = "<leader>ca"; action = ":lua vim.lsp.buf.actions()<cr>"; options.silent = true; }
       { mode = "n"; key = "<leader>cd"; action = ":lua vim.diagnostic.open_float()<cr>"; options.silent = true; }
+      { mode = "n"; key = "<leader>cn"; action = ":Navbuddy<cr>"; options.silent = true; }
       { mode = "n"; key = "<leader>cr"; action = ":lua vim.lsp.buf.rename()<cr>"; options.silent = true; }
 
       { mode = "n"; key = "<C-h>"; action = ":wincmd h<cr>"; options.silent = true; }
@@ -228,6 +240,13 @@ in
               allFeatures = true,
               command = "clippy",
               target = os.getenv("LSP_CARGO_TARGET") or nil,
+            },
+            diagnostics = {
+              enable = true,
+              disabled = {
+                "inactive-code",
+                "unlinked-file",
+              },
             },
           },
         },

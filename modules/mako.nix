@@ -4,9 +4,9 @@
   services.mako = {
     enable = true;
     font = "Hack Nerd Font 10";
-    backgroundColor = "#232627aa";
-    textColor = "#fcfcfc";
-    borderColor = "#1abc9c";
+    backgroundColor = "#181825";
+    textColor = "#cdd6f4";
+    borderColor = "#cba6f7";
     borderSize = 4;
     defaultTimeout = 10000;
   };
