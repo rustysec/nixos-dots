@@ -179,7 +179,6 @@ in
     };
   };
 
-  powerManagement.powertop.enable = true;
 
   nix = {
     gc = {
@@ -194,6 +193,10 @@ in
     };
     optimise.automatic = true;
   };
+
+  imports = [
+    ./samba.nix
+  ];
 
   home-manager.users.russ = { pkgs, ... }:
     {

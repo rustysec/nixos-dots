@@ -14,6 +14,7 @@
         "browser.startup.homepage" = "about:home";
         "browser.tabs.inTitlebar" = 0;
         "media.eme.enabled" = true;
+        "signon.rememberSignon" = false;
       };
     };
   };

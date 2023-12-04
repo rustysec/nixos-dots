@@ -121,6 +121,19 @@
         "gsettings set org.gnome.desktop.interface icon-theme 'Papirus'"
         "gsettings set org.gnome.desktop.interface cursor-theme 'Catppuccin-Frappe-Dark-Cursors'"
       ];
+
+      windowrulev2 = [
+
+        # pavucontrol
+        "float,class: ^pavucontrol$"
+        "size 1000 500,class: ^pavucontrol$"
+        "center,class: ^pavucontrol$"
+
+        # blueman-manager
+        "float,class: ^.blueman-manager-wrapped$"
+        "size 1000 500,class: ^.blueman-manager-wrapped$"
+        "center,class: ^.blueman-manager-wrapped$"
+      ];
     };
 
     extraConfig = ''

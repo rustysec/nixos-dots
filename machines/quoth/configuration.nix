@@ -8,4 +8,5 @@
     ];
 
   networking.hostName = "quoth";
+  boot.loader.systemd-boot.consoleMode = "1";
 }

@@ -115,14 +115,24 @@ in
         globalstatus = true;
         winbar = {
           lualine_c = [
-            "filename"
+            {
+              name = "filename";
+              extraConfig = {
+                "path" = 1;
+              };
+            }
             "diagnostics"
             "navic"
           ];
         };
         inactiveWinbar = {
           lualine_c = [
-            "filename"
+            {
+              name = "filename";
+              extraConfig = {
+                "path" = 1;
+              };
+            }
             "diagnostics"
           ];
         };
@@ -154,6 +164,8 @@ in
       { mode = "n"; key = "<leader>fS"; action = ":Telescope lsp_dynamic_workspace_symbols<cr>"; options.silent = true; }
       { mode = "n"; key = "<leader>fw"; action = ":Telescope grep_string<cr>"; options.silent = true; }
 
+
+      { mode = "n"; key = "gd"; action = ":lua vim.lsp.buf.definition()<cr>"; options.silent = true; }
       { mode = "n"; key = "<leader>ca"; action = ":lua vim.lsp.buf.actions()<cr>"; options.silent = true; }
       { mode = "n"; key = "<leader>cd"; action = ":lua vim.diagnostic.open_float()<cr>"; options.silent = true; }
       { mode = "n"; key = "<leader>cn"; action = ":Navbuddy<cr>"; options.silent = true; }
