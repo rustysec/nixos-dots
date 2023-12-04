@@ -314,7 +314,7 @@ in
       ];
 
       home.file.".config/locker/menu.sh".text = ''
-        OPT=$(cat ~/.config/locker/options | fuzzel -d -l 4)
+        OPT=$(cat ~/.config/locker/options | fuzzel -d -l 5)
 
         case $OPT in
           "⏻ Shutdown")
