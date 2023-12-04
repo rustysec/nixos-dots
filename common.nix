@@ -71,10 +71,6 @@ in
       enable = true;
     };
 
-    tlp = {
-      enable = true;
-    };
-
     fstrim.enable = true;
 
     greetd = {
@@ -278,6 +274,7 @@ in
         firefox
         foot
         go
+        google-chrome
         gopls
         grim
         libclang
@@ -317,8 +314,6 @@ in
       ];
 
       home.file.".config/locker/menu.sh".text = ''
-        #!/bin/bash
-
         OPT=$(cat ~/.config/locker/options | fuzzel -d -l 4)
 
         case $OPT in

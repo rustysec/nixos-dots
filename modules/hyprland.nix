@@ -205,7 +205,7 @@
 
       input {
           kb_layout = us
-          kb_variant = colemak
+          # kb_variant = colemak
 
           follow_mouse = 1
           touchpad {
