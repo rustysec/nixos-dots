@@ -281,6 +281,7 @@ in
         gopls
         grim
         libclang
+        osslsigncode
         pamixer
         papirus-icon-theme
         playerctl

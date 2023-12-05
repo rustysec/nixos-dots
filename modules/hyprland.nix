@@ -133,6 +133,16 @@
         "float,class: ^.blueman-manager-wrapped$"
         "size 1000 500,class: ^.blueman-manager-wrapped$"
         "center,class: ^.blueman-manager-wrapped$"
+
+        # chrome download
+        "float,class:(google-chrome),title:(Save File)"
+        "size 1000 500,class:(google-chrome),title:(Save File)"
+        "center,class:(google-chrome),title:(Save File)"
+
+        # network manager vpn
+        "float,class:(nm-openconnect-auth-dialog)"
+        "size 1000 500,class:(nm-openconnect-auth-dialog)"
+        "center,class:(nm-openconnect-auth-dialog)"
       ];
     };
 
