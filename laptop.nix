@@ -2,7 +2,7 @@
 {
   powerManagement.powertop.enable = true;
 
-  tlp = {
+  services.tlp = {
     enable = true;
   };
 }
