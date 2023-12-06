@@ -7,9 +7,9 @@
       layer = "top";
       position = "top";
       spacing = 4;
-      modules-left = [ "hyprland/workspaces" "mpris" ];
-      modules-center = [ "hyprland/window" ];
-      modules-right = [ "pulseaudio" "battery" "backlight" "cpu" "memory" "clock" "tray" ];
+      modules-left = [ "hyprland/workspaces" ];
+      modules-center = [ "clock" ];
+      modules-right = [ "pulseaudio" "battery" "backlight" "cpu" "memory" "tray" ];
 
       "tray" = {
         spacing = 10;

@@ -68,7 +68,6 @@ in
       nvim-cmp.enable = true;
       oil.enable = true;
       todo-comments.enable = true;
-      treesitter-context.enable = true;
       treesitter-textobjects.enable = true;
 
       navbuddy = {

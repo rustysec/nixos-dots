@@ -94,6 +94,8 @@ in
 
     blueman.enable = true;
     thermald.enable = true;
+    gvfs.enable = true;
+    tumbler.enable = true;
   };
 
   security = {
@@ -130,8 +132,10 @@ in
     pavucontrol
     psmisc
     tmux
+    unzip
     wget
     xdg-desktop-portal-hyprland
+    zip
   ];
 
   programs = {
@@ -140,16 +144,28 @@ in
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     };
 
+    thunar = {
+      enable = true;
+      plugins = with pkgs.xfce; [
+        thunar-archive-plugin
+        thunar-volman
+      ];
+    };
+
     zsh.enable = true;
     virt-manager.enable = true;
     dconf.enable = true;
-    thunar.enable = true;
     ssh.startAgent = true;
     light.enable = true;
   };
 
+
   virtualisation = {
-    libvirtd.enable = true;
+    libvirtd = {
+      enable = true;
+      qemu.swtpm.enable = true;
+      qemu.ovmf.enable = true;
+    };
     podman = {
       enable = true;
       dockerCompat = true;
