@@ -116,6 +116,7 @@ in
   };
 
   environment.systemPackages = with pkgs; [
+    bash-completion
     blueman
     file
     git
@@ -226,7 +227,6 @@ Hyprland
       mode = "0555";
     };
   };
-
 
   nix = {
     gc = {
@@ -355,6 +355,7 @@ Hyprland
         (import ./modules/hyprland.nix {
           inherit wallpaper;
         })
+        ./modules/bash.nix
         ./modules/kanshi.nix
         ./modules/mako.nix
         ./modules/nvim/default.nix
