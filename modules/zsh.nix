@@ -10,7 +10,7 @@
       theme = "flazz";
       extraConfig = ''
         source ~/.zsh/catppuccin/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh
-        NIX_STORE=/nix/store
+        export NIX_STORE=/nix/store
       '';
     };
   };

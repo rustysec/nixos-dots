@@ -76,10 +76,10 @@ in
     greetd = {
       enable = true;
       settings = {
-        default_session.command = "${pkgs.greetd.greetd}/bin/agreety --cmd Hyprland";
+        default_session.command = "${pkgs.greetd.greetd}/bin/agreety --cmd /etc/greetd/hyprland.sh";
         initial_session = {
           user = "russ";
-          command = "Hyprland";
+          command = "/etc/greetd/hyprland.sh";
         };
       };
     };
@@ -163,9 +163,24 @@ in
   virtualisation = {
     libvirtd = {
       enable = true;
-      qemu.swtpm.enable = true;
-      qemu.ovmf.enable = true;
+      qemu = {
+        package = pkgs.qemu_kvm;
+        swtpm.enable = true;
+        ovmf = {
+          enable = true;
+          packages = [
+            # pkgs.OVMFFull.fd
+
+            (pkgs.OVMFFull.override
+              {
+                secureBoot = true;
+                tpmSupport = true;
+              }).fd
+          ];
+        };
+      };
     };
+
     podman = {
       enable = true;
       dockerCompat = true;
@@ -192,6 +207,23 @@ in
         RestartSec = 1;
         TimeoutStopSec = 10;
       };
+    };
+  };
+
+  environment.etc = {
+    "ovmf/edk2-x86_64-secure-code.fd" = {
+      source = "${pkgs.qemu_kvm}/share/qemu/edk2-x86_64-secure-code.fd";
+    };
+
+    "ovmf/edk2-i386-vars.fd" = {
+      source = "${pkgs.qemu_kvm}/share/qemu/edk2-i386-vars.fd";
+    };
+
+    "greetd/hyprland.sh" = {
+      text = ''#!/usr/bin/env bash
+Hyprland
+'';
+      mode = "0555";
     };
   };
 
