@@ -5,6 +5,7 @@
   programs.swaylock = {
     enable = true;
     settings = {
+      daemonize = true;
       image = "${wallpaper_lock}";
       text-color = "cdd6f4";
       text-clear-color = "cdd6f4";
