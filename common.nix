@@ -329,6 +329,9 @@ Hyprland
         gopls
         grim
         libclang
+        nodejs
+        nodePackages.typescript
+        nodePackages.typescript-language-server
         osslsigncode
         pamixer
         papirus-icon-theme
