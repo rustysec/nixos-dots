@@ -18,7 +18,13 @@ let
 in
 {
   system.stateVersion = "23.11";
-  networking.networkmanager.enable = true;
+
+  networking = {
+    networkmanager.enable = true;
+    wireless.iwd.enable = true;
+    networkmanager.wifi.backend = "iwd";
+  };
+
   time.timeZone = "America/Los_Angeles";
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
