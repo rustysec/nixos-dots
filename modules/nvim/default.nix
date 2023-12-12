@@ -163,7 +163,6 @@ in
       { mode = "n"; key = "<leader>fS"; action = ":Telescope lsp_dynamic_workspace_symbols<cr>"; options.silent = true; }
       { mode = "n"; key = "<leader>fw"; action = ":Telescope grep_string<cr>"; options.silent = true; }
 
-
       { mode = "n"; key = "gd"; action = ":lua vim.lsp.buf.definition()<cr>"; options.silent = true; }
       { mode = "n"; key = "<leader>ca"; action = ":lua vim.lsp.buf.actions()<cr>"; options.silent = true; }
       { mode = "n"; key = "<leader>cd"; action = ":lua vim.diagnostic.open_float()<cr>"; options.silent = true; }
@@ -194,6 +193,8 @@ in
       { mode = "n"; key = "<leader>|"; action = "<C-W>v"; }
       { mode = "n"; key = "<leader>w-"; action = "<C-W>s"; }
       { mode = "n"; key = "<leader>-"; action = "<C-W>s"; }
+
+      { mode = "n"; key = "<leader>ss"; action = ":Telescope spell_suggest<cr>"; options.silent = true; }
 
       { mode = "n"; key = "<esc>"; action = "<esc>:noh<cr>"; options.silent = true; }
       { mode = "i"; key = "<esc>"; action = "<esc>:noh<cr>"; options.silent = true; }
@@ -268,6 +269,10 @@ in
       })
 
       lspconfig.tsserver.setup({
+        capabilities = capabilities,
+      })
+
+      lspconfig.marksman.setup({
         capabilities = capabilities,
       })
 

@@ -155,11 +155,12 @@ in
       ];
     };
 
-    zsh.enable = true;
-    virt-manager.enable = true;
+    bash.blesh.enable = true;
     dconf.enable = true;
-    ssh.startAgent = true;
     light.enable = true;
+    ssh.startAgent = true;
+    virt-manager.enable = true;
+    zsh.enable = true;
   };
 
 
@@ -331,6 +332,8 @@ Hyprland
         gopls
         grim
         libclang
+        libnotify
+        marksman
         nodejs
         nodePackages.typescript
         nodePackages.typescript-language-server
@@ -347,6 +350,7 @@ Hyprland
         typescript
         virt-manager
         wl-clipboard
+        zola
       ];
 
       imports = [
