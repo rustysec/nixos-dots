@@ -8,7 +8,7 @@
       position = "top";
       spacing = 4;
       modules-left = [ "hyprland/workspaces" ];
-      modules-center = [ "clock" ];
+      modules-center = [ "clock" "clock#utc" ];
       modules-right = [ "pulseaudio" "battery" "backlight" "cpu" "memory" "tray" ];
 
       "tray" = {
@@ -20,7 +20,12 @@
       };
 
       "clock" = {
-        format = "{:%a | %b %d | %H:%M}";
+        format = "{:%a | %b %d | %H:%M %Z}";
+      };
+
+      "clock#utc" = {
+        format = "{:%a | %b %d | %H:%M %Z}";
+        timezone = "Etc/UTC";
       };
 
       "hyprland/window" = {
