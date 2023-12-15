@@ -337,6 +337,7 @@ Hyprland
         google-chrome
         gopls
         grim
+        jq
         libclang
         libnotify
         marksman
