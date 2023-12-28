@@ -3,10 +3,6 @@
 , ...
 }:
 let
-  # wallpaper_stripes = pkgs.fetchurl {
-  #   url = "https://raw.githubusercontent.com/nixos/nixos-artwork/master/wallpapers/nix-wallpaper-stripes-logo.png";
-  #   sha256 = "d4ca0fc32b70f24062cbe4b1ef4c661e7c4c260a8468e47d60481030ee9b1233";
-  # };
   wallpaper_lock = pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/master/wallpapers/nix-wallpaper-nineish-dark-gray.png";
     hash = "sha256-nhIUtCy/Hb8UbuxXeL3l3FMausjQrnjTVi1B3GkL9B8=";
@@ -84,10 +80,10 @@ in
     greetd = {
       enable = true;
       settings = {
-        default_session.command = "${pkgs.greetd.greetd}/bin/agreety --cmd /etc/greetd/hyprland.sh";
+        default_session.command = "${pkgs.greetd.greetd}/bin/agreety --cmd /etc/greetd/sway.sh";
         initial_session = {
           user = "russ";
-          command = "/etc/greetd/hyprland.sh";
+          command = "/etc/greetd/sway.sh";
         };
       };
     };
@@ -179,8 +175,6 @@ in
         ovmf = {
           enable = true;
           packages = [
-            # pkgs.OVMFFull.fd
-
             (pkgs.OVMFFull.override
               {
                 secureBoot = true;
@@ -235,6 +229,13 @@ Hyprland
 '';
       mode = "0555";
     };
+
+    "greetd/sway.sh" = {
+      text = ''#!/usr/bin/env bash
+sway
+'';
+      mode = "0555";
+    };
   };
 
   nix = {
@@ -253,9 +254,10 @@ Hyprland
 
   imports = [
     ./samba.nix
+    ./sway.nix
   ];
 
-  home-manager.users.russ = { pkgs, ... }:
+  home-manager.users.russ = { config, lib, pkgs, ... }:
     {
       home.stateVersion = "23.11";
 
@@ -372,6 +374,13 @@ Hyprland
         ./modules/kanshi.nix
         ./modules/mako.nix
         ./modules/nvim/default.nix
+        (import ./modules/sway.nix
+          {
+            inherit config;
+            inherit lib;
+            inherit pkgs;
+            inherit wallpaper;
+          })
         (import ./modules/swaylock.nix
           {
             inherit wallpaper_lock;
@@ -393,7 +402,7 @@ Hyprland
             systemctl reboot
             ;;
           "󰩈 Logout")
-            hyprctl dispatch exit 0
+            hyprctl dispatch exit 0 || swaymsg exit
             ;;
           " Lock")
             swaylock

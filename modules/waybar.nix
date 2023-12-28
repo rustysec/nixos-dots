@@ -7,7 +7,7 @@
       layer = "top";
       position = "top";
       spacing = 4;
-      modules-left = [ "hyprland/workspaces" ];
+      modules-left = [ "sway/workspaces" ];
       modules-center = [ "clock" "clock#utc" ];
       modules-right = [ "pulseaudio" "battery" "backlight" "cpu" "memory" "tray" ];
 
@@ -172,6 +172,7 @@
       border-bottom: 2px solid @mauve;
       margin-right: 5px;
       border-radius: 0px;
+      min-width: 0;
     }
 
     #workspaces button:hover {
@@ -194,6 +195,17 @@
     }
 
     #workspaces button.active:hover {
+      border-top: 2px solid @teal;
+      margin-right: 5px;
+    }
+
+    #workspaces button.focused {
+      border-top: 2px solid @teal;
+      border-bottom: 2px solid @teal;
+      margin-right: 5px;
+    }
+
+    #workspaces button.focused:hover {
       border-top: 2px solid @teal;
       margin-right: 5px;
     }
