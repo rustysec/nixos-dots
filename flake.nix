@@ -11,7 +11,7 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland";
+    # hyprland.url = "github:hyprwm/Hyprland";
 
     nixvim = {
       url = "github:nix-community/nixvim";
@@ -26,7 +26,6 @@
     , nixpkgs-unstable
     , nixvim
     , home-manager
-    , hyprland
     } @ inputs: {
       nixosConfigurations.vm = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";

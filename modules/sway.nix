@@ -26,7 +26,7 @@
         { command = "kanshi"; always = true; }
         { command = "waybar"; }
         { command = "swaybg -m fill --image ${wallpaper}"; }
-        { command = ''swayidle -w timeout 300 'swaylock' timeout 600 'swaymsg "output * dpms off ' resume 'swaymsg "output * dpms on"' before-sleep 'swaylock' ''; }
+        { command = ''swayidle -w timeout 300 'swaylock' timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'swaylock' ''; }
         { command = "blueman-applet"; }
         { command = "mako"; }
         { command = "nm-applet --indicator"; }
@@ -65,7 +65,7 @@
       set $mantle    #181825
       set $crust     #11111b
 
-      client.focused           $lavender $base $text  $lavender $lavender
+      client.focused           $teal     $base $text  $mauve $teal
       client.focused_inactive  $overlay0 $base $text  $overlay0 $overlay0
       client.unfocused         $overlay0 $base $text  $overlay0 $overlay0
       client.urgent            $peach    $base $peach $peach    $peach

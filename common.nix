@@ -144,10 +144,12 @@ in
   ];
 
   programs = {
-    hyprland = {
+    /*
+      hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    };
+      };
+    */
 
     thunar = {
       enable = true;
@@ -367,9 +369,11 @@ sway
         ./modules/firefox.nix
         ./modules/foot.nix
         ./modules/fuzzel.nix
+        /*
         (import ./modules/hyprland.nix {
           inherit wallpaper;
         })
+        */
         ./modules/bash.nix
         ./modules/kanshi.nix
         ./modules/mako.nix
