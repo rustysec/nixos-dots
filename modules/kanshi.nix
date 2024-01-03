@@ -22,7 +22,7 @@
       quoth = {
         outputs = [
           {
-            criteria = "LG Electronics LG Ultra HD 0x00072EE9";
+            criteria = "LG Electronics LG Ultra HD 0x00002FE9";
             scale = 1.5;
             position = "0,0";
           }
