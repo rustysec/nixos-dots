@@ -143,10 +143,14 @@ in
       tabstop = 4;
       expandtab = true;
       relativenumber = true;
+      smartcase = true;
+      spell = true;
+      splitbelow = true;
+      splitright = true;
+      list = true;
       number = true;
       wrap = false;
       ignorecase = true;
-      smartcase = true;
     };
 
     keymaps = [
@@ -211,10 +215,6 @@ in
     ];
 
     extraConfigLua = ''
-      vim.opt.list = true
-      vim.opt.splitbelow = true
-      vim.opt.splitright = true
-
       require("focus").setup({})
 
       local cmp = require("cmp")
