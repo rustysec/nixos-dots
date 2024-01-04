@@ -113,6 +113,13 @@
 
       bindgesture swipe:3:right workspace prev
       bindgesture swipe:3:left workspace next
+
+      for_window [app_id="^blueman-manager$"] floating enable, resize set 500 500
+      for_window [app_id="^.blueman-manager-wrapped$"] floating enable, resize set 500 500
+      for_window [app_id="^pavucontrol$"] floating enable, resize set 1000 1000
+      for_window [app_id="^nm-connection-editor$"] floating enable, resize set 1000 1000
+      for_window [app_id="^nm-openconnect-auth-dialog$"] floating enable, resize set 1000 1000
+      for_window [window_role="dialog"] floating enable
     '';
     config.keybindings =
       let
