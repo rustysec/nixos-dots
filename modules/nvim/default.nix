@@ -145,6 +145,8 @@ in
       relativenumber = true;
       number = true;
       wrap = false;
+      ignorecase = true;
+      smartcase = true;
     };
 
     keymaps = [
