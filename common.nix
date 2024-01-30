@@ -136,6 +136,7 @@ in
     nixpkgs-fmt
     pavucontrol
     psmisc
+    podman-compose
     tmux
     unzip
     wget
