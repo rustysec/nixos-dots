@@ -67,8 +67,8 @@ in
 
   services = {
     xserver = {
-      layout = "us";
-      xkbVariant = "";
+      xkb.layout = "us";
+      xkb.variant = "";
     };
 
     openssh = {
@@ -367,15 +367,11 @@ sway
 
       imports = [
         inputs.nixvim.homeManagerModules.nixvim
+        ./modules/bash.nix
         ./modules/firefox.nix
         ./modules/foot.nix
         ./modules/fuzzel.nix
-        /*
-        (import ./modules/hyprland.nix {
-          inherit wallpaper;
-        })
-        */
-        ./modules/bash.nix
+        ./modules/gh.nix
         ./modules/kanshi.nix
         ./modules/mako.nix
         ./modules/nvim/default.nix

@@ -21,6 +21,16 @@ let
       sha256 = "sha256-06CiJ+xeMO4+OJkckcslqwloJyt2gwg514JuxV6KOfQ=";
     };
   };
+
+  octo = pkgs.vimUtils.buildVimPlugin {
+    name = "octo";
+    src = pkgs.fetchFromGitHub {
+      owner = "pwntester";
+      repo = "octo.nvim";
+      rev = "0d0abffed42b0e77aff286279fb7c958f1f79ce6";
+      sha256 = "sha256-HoY9VGK+tPPjvbJ/W4wIKPewPCeJHO82LFcmUxzx5Fw=";
+    };
+  };
 in
 {
   programs.nixvim = {
@@ -212,10 +222,12 @@ in
       nui-nvim
       focus
       inlayhints
+      octo
     ];
 
     extraConfigLua = ''
       require("focus").setup({})
+      require("octo").setup({})
 
       local cmp = require("cmp")
 
