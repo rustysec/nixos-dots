@@ -145,13 +145,6 @@ in
   ];
 
   programs = {
-    /*
-      hyprland = {
-      enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-      };
-    */
-
     thunar = {
       enable = true;
       plugins = with pkgs.xfce; [
@@ -345,6 +338,7 @@ sway
         jq
         libclang
         libnotify
+        lua-language-server
         marksman
         nodejs
         nodePackages.typescript
@@ -374,7 +368,7 @@ sway
         ./modules/gh.nix
         ./modules/kanshi.nix
         ./modules/mako.nix
-        ./modules/nvim/default.nix
+        ./modules/nvim.nix
         (import ./modules/sway.nix
           {
             inherit config;

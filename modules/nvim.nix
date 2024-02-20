@@ -290,6 +290,10 @@ in
         capabilities = capabilities,
       })
 
+      lspconfig.lua_ls.setup({
+        capabilities = capabilities,
+      })
+
       lspconfig.nil_ls.setup({
         capabilities = capabilities,
         settings = {
