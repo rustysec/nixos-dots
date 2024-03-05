@@ -130,7 +130,7 @@ in
     greetd.wlgreet
     kanshi
     mate.mate-polkit
-    neovim
+    neovim-nightly
     networkmanagerapplet
     nil
     nixpkgs-fmt
@@ -258,6 +258,7 @@ sway
       home.stateVersion = "23.11";
 
       nixpkgs.config.allowUnfree = true;
+      nixpkgs.overlays = [ inputs.neovim-nightly-overlay.overlay ];
 
       services.blueman-applet.enable = true;
       services.network-manager-applet.enable = true;

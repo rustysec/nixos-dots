@@ -11,13 +11,12 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    # hyprland.url = "github:hyprwm/Hyprland";
-
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs =
@@ -26,6 +25,7 @@
     , nixpkgs-unstable
     , nixvim
     , home-manager
+    , neovim-nightly-overlay
     } @ inputs: {
       nixosConfigurations.vm = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -53,6 +53,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./machines/quoth/configuration.nix
+          ({ pkgs, ... }: { nixpkgs.overlays = [ neovim-nightly-overlay.overlay ]; })
         ];
       };
     };

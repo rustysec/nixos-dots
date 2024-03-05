@@ -7,18 +7,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "nvim-focus";
       repo = "focus.nvim";
-      rev = "31f41d91b6b331faa07f0a513adcbc37087d028d";
-      sha256 = "sha256-IOMhyplEyLEPJ/oXFjOfs7uXY52AcVrSZuHV7t4NeUE=";
-    };
-  };
-
-  inlayhints = pkgs.vimUtils.buildVimPlugin {
-    name = "lsp-inlayhints";
-    src = pkgs.fetchFromGitHub {
-      owner = "lvimuser";
-      repo = "lsp-inlayhints.nvim";
-      rev = "d981f65c9ae0b6062176f0accb9c151daeda6f16";
-      sha256 = "sha256-06CiJ+xeMO4+OJkckcslqwloJyt2gwg514JuxV6KOfQ=";
+      rev = "c9bc6a969c3ff0d682f389129961c9e71ff2c918";
+      sha256 = "sha256-Ak9NZhsPJTZGrxM3jjA5oYMKEsx2uj/Hi/KjGCDFBrI=";
     };
   };
 
@@ -35,6 +25,7 @@ in
 {
   programs.nixvim = {
     enable = true;
+    package = pkgs.neovim-nightly;
 
     clipboard.register = "unnamedplus";
 
@@ -221,7 +212,6 @@ in
       nvim-lspconfig
       nui-nvim
       focus
-      inlayhints
       octo
     ];
 
@@ -317,18 +307,11 @@ in
         },
       })
 
-      require("lsp-inlayhints").setup({})
       vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
       vim.api.nvim_create_autocmd("LspAttach", {
         group = "LspAttach_inlayhints",
         callback = function(args)
-          if not (args.data and args.data.client_id) then
-            return
-          end
-
-          local bufnr = args.buf
-          local client = vim.lsp.get_client_by_id(args.data.client_id)
-          require("lsp-inlayhints").on_attach(client, bufnr, true)
+          vim.lsp.inlay_hint.enable(args.buf, true)
         end
       })
 
