@@ -5,6 +5,12 @@ let
   });
 in
 {
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
+    }))
+  ];
+
   home.username = "russ";
   home.homeDirectory = "/Users/russ";
 
@@ -31,10 +37,10 @@ in
   home.file = {
 
     ".zsh/catppuccin" = {
-    source = builtins.fetchGit {
+      source = builtins.fetchGit {
         url = "https://github.com/catppuccin/zsh-syntax-highlighting.git";
         rev = "06d519c20798f0ebe275fc3a8101841faaeee8ea";
-    };
+      };
     };
   };
 

@@ -32,6 +32,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./machines/vm/configuration.nix
+          ({ pkgs, ... }: { nixpkgs.overlays = [ neovim-nightly-overlay.overlay ]; })
         ];
       };
       nixosConfigurations.helvetios = nixpkgs.lib.nixosSystem {
@@ -39,6 +40,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./machines/helvetios/configuration.nix
+          ({ pkgs, ... }: { nixpkgs.overlays = [ neovim-nightly-overlay.overlay ]; })
         ];
       };
       nixosConfigurations.sucellus = nixpkgs.lib.nixosSystem {
@@ -46,6 +48,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./machines/sucellus/configuration.nix
+          ({ pkgs, ... }: { nixpkgs.overlays = [ neovim-nightly-overlay.overlay ]; })
         ];
       };
       nixosConfigurations.quoth = nixpkgs.lib.nixosSystem {
